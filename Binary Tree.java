@@ -128,3 +128,27 @@ class Solution {
         inorderHelper(root.right, result);
     }
 }
+
+
+//98. Validate Binary Search Tree
+class Solution {
+    private TreeNode prev;
+
+    public boolean isValidBST(TreeNode root) {
+        return dfs(root);
+    }
+
+    private boolean dfs(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (!dfs(root.left)) {
+            return false;
+        }
+        if (prev != null && prev.val >= root.val) {
+            return false;
+        }
+        prev = root;
+        return dfs(root.right);
+    }
+}
